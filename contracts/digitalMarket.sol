@@ -98,5 +98,6 @@ contract DigitalMarket {
         require(sale.Seller == msg.sender || sale.Buyer == msg.sender, "UNAUTHORIZED SELLER");
         states[_productId] = State.Canceled;
         balances[sale.Buyer] += sale.Price;
+				balances[sale.Seller] -= sale.Price;
     }
 }
