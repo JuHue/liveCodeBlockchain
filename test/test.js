@@ -56,16 +56,13 @@ describe("DigitalMarketPlace 4/5", function () {
         const market = await ethers.deployContract("DigitalMarket");
         await market.connect(owner).newProduct("the best of good love gone", "24 Carat Black", "24 Carat Black", "Holy Grail soul music");
         const productBloc = await market.products(1);
-        console.log(productBloc);
         const option = {value: ethers.parseEther("0.0000015")};
-        console.log(option.value);
         await market.connect(owner).newSale(1, option.value);
 
         let gooPrice = Number(ethers.parseEther("0.0000015"));
         let fees = gooPrice*5.5/100
         gooPrice = gooPrice + fees;
         option.value = BigInt(gooPrice);
-        console.log(option.value);
         await market.connect(secondOwner).buyProduct(1, 1, option);
         
         const product = await market.products(1);
@@ -81,16 +78,13 @@ describe("DigitalMarketPlace 4/5", function () {
         const market = await ethers.deployContract("DigitalMarket");
         await market.connect(owner).newProduct("the best of good love gone", "24 Carat Black", "24 Carat Black", "Holy Grail soul music");
         const productBloc = await market.products(1);
-        console.log(productBloc);
         const option = {value: ethers.parseEther("0.0000015")};
-        console.log(option.value);
         await market.connect(owner).newSale(1, option.value);
 
         let gooPrice = Number(ethers.parseEther("0.0000015"));
         let fees = gooPrice*2/100
         gooPrice = gooPrice + fees;
         option.value = BigInt(gooPrice);
-        console.log(option.value);
         try {
             await market.connect(secondOwner).buyProduct(1, 1, option);
         } catch (error) {
